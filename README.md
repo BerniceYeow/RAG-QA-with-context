@@ -98,12 +98,14 @@ Potential for factual errors: GPT-4 outputs require careful review to ensure acc
 Bias risk: GPT-4's responses might reflect biases present in its training data.
 
 ### Step 6 - Build a simple GUI to interactive with the model using Flask
+Other project sample with use cases focusing on company policies (https://github.com/justinlaw360/RAG/tree/main/flaskGPT_v2%20-Github/static)
 ![image](https://github.com/justinlaw360/RAG/blob/main/Animation.gif)
 
 Pros:
 
 User-friendly interaction: Enables users to easily interact with the model and retrieve information.
 Customizability: The UI can be tailored to specific needs and user groups.
+
 Cons:
 
 Development effort: Building a well-designed UI requires web development skills.
