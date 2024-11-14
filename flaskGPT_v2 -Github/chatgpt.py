@@ -37,9 +37,13 @@ embeddings = AzureOpenAIEmbeddings(
 )
 import pandas as pd
 dataset = pd.read_csv('PoemDataset.csv')
+# Clean leading/trailing spaces
+dataset['Poem'] = dataset['Poem'].str.strip()
+
+# Convert to string type
+dataset['Poem'] = dataset['Poem'].astype(str)
 # Load the FAISS index
 db = FAISS.from_texts(dataset['Poem'], embeddings, allow_dangerous_deserialization=True)
-
 # Create the retrieval chain
 retriever = db.as_retriever(search_type="similarity", search_kwargs={"k": 6})
 contextualize_q_prompt = ChatPromptTemplate.from_messages(
