@@ -37,7 +37,11 @@ embeddings = AzureOpenAIEmbeddings(
 )
 import pandas as pd
 dataset = pd.read_csv('PoemDataset.csv')
+# Clean leading/trailing spaces
+dataset['Poem'] = dataset['Poem'].str.strip()
 
+# Convert to string type
+dataset['Poem'] = dataset['Poem'].astype(str)
 # Load the FAISS index
 db = FAISS.from_texts(dataset['Poem'], embeddings, allow_dangerous_deserialization=True)
 
