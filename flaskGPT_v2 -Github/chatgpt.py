@@ -35,6 +35,7 @@ embeddings = AzureOpenAIEmbeddings(
     azure_deployment="text-embedding-ada-002",
     openai_api_version="2023-05-15",
 )
+
 import pandas as pd
 dataset = pd.read_csv('PoemDataset.csv')
 # Clean leading/trailing spaces
@@ -42,8 +43,23 @@ dataset['Poem'] = dataset['Poem'].str.strip()
 
 # Convert to string type
 dataset['Poem'] = dataset['Poem'].astype(str)
+
+from sentence_transformers import SentenceTransformer
+
+# Load a pre-trained sentence transformer model
+model_name = 'all-MiniLM-L6-v2'
+  # You can choose other models based on your needs
+model = SentenceTransformer(model_name)
+
+# Example usage:
+embeddings = model.encode(dataset['Poem'])
+
+# Create a list of tuples with poem and its embedding
+text_embeddings = list(zip(dataset['Poem'], embeddings))
+
 # Load the FAISS index
-db = FAISS.from_texts(dataset['Poem'], embeddings, allow_dangerous_deserialization=True)
+db = FAISS.from_embeddings(text_embeddings, embedding="ID_MAP")
+
 # Create the retrieval chain
 retriever = db.as_retriever(search_type="similarity", search_kwargs={"k": 6})
 contextualize_q_prompt = ChatPromptTemplate.from_messages(
