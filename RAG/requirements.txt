@@ -2,3 +2,6 @@ openai
 Flask
 langchain-openai
 langchain
+sentence_transformers
+faiss
+faiss-gpu
