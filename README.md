@@ -18,13 +18,9 @@ I simplified the flow how OpenAI model "learn" the company policies and response
 ![image](https://github.com/justinlaw360/RAG/blob/main/rag.jpg)
 
 ### Step 1 - Data collection
-255 (English and Chinese) CGIs are downloaded from HR Library
+255 Poems dataset can be downloaded from:
 
-![image](https://github.com/justinlaw360/RAG/assets/4946026/d0ec160b-c157-4ebf-9f20-0fd1322e1d74)HR Library
-
-And store locally on my PC
-
-![image](https://github.com/justinlaw360/RAG/assets/4946026/53c17c03-9c57-43a7-ad1a-33cae2bf5397)
+![image](https://www.kaggle.com/datasets/abdelrahmanekhaldi/english-poem-dataset)
 
 ### Step 2 - Embedding Data
 I use Azure OpenAI embedding model "text-embedding-ada-002“ to embed the documents into vectors. Text-embedding-ada-002 is an embedding model from OpenAI published in Dec 2022 for text search, text similarity, and code search. 
